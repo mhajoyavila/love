@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Love Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: aquamarine;
+        }
+
+        h1 {
+            color: #e82424;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        #calculateBtn {
+            background-color: #43121c;
+            color: rgb(180, 154, 154);
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 20px;
+
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Love Calculator</h1>
+    <p>Enter two names to calculate your love compatibility:</p>
+    <input type="text" id="name1" placeholder="your name">
+    <input type="text" id="name2" placeholder="his or her name">
+    <br>
+    <button id="calculateBtn">Calculate</button>
+    <br>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("calculateBtn").addEventListener("click", function () {
+            var name1 = document.getElementById("name1").value.toLowerCase();
+            var name2 = document.getElementById("name2").value.toLowerCase();
+            var loveScore = calculateLoveScore(name1, name2);
+
+            document.getElementById("result").innerText = `Love Compatibility: ${loveScore}%`;
+        });
+
+        function calculateLoveScore(name1, name2) {
+            var combinedName = name1 + name2;
+            var loveScore = 0;
+
+            for (var i = 0; i < combinedName.length; i++) {
+                loveScore += combinedName.charCodeAt(i);
+            }
+
+            loveScore = loveScore % 101; // Ensure the score is between 0 and 100
+            return loveScore;
+        }
+    </script>
+</body>
+</html>
